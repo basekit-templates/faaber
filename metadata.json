@@ -1,5 +1,6 @@
 {
 	"name":"Faaber",
+	"versionTenCompatible": 1,
 	"thumbnail":"thumbnail.png",
 	"screenshot":"faaber-screenshot.jpg",
 	"images":[
