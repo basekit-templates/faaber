@@ -3,20 +3,20 @@
 
 	<head>
 		{% include "head.twig" %}
-		
+
 		{% include basekit.headScript %}
 	</head>
 
-	<body class="{{ page.backgroundClass }} {{ site.colorSwatch }}">
+	<body class="{{ page.backgroundClass }} {{ site.colorSwatch }}" {{ isV10sSite ? 'id="migrated-site"' : '' }}>
 
 		{% include "header.twig" %}
 
 		<div class="page-wrap">
-			
+
 			{% block content %}
 			{% endblock %}
 
-			
+
 		</div>
 
 		{% include "footer.twig" %}
