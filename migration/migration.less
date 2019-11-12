@@ -5,19 +5,23 @@
 
 #migrated-site {
 
-  // Stylseheet overrides
+
+
+
+  // Stylesheet overrides
   // -----------------------------
 
 
-  // Template wrapper (replace with corresponding template classes)
-  .main.wrapper {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
+  .main-wrap {
+    padding: 0;
   }
 
-  // Main content spacing (replace with corresponding template class)
-  .main {
+  .page-wrap {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .page-wrap .main {
     padding: 0;
   }
 
@@ -26,29 +30,72 @@
     overflow: inherit;
   }
 
+  .row.widget,
+  .row.widget .row {
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .row:not(.widget) {
+    @media @tablet {
+      padding: 0;
+    }
+  }
+
+
+
+
   // Migration styles
   // -----------------------------
 
 
   // Replace with corresponding template values
-  @container-width: 960px;
-
+  @container-width: 1400px;
   @spacing__first--desktop: 40px;
   @spacing__first--tablet:  30px;
   @spacing__first--mobile:  20px;
-
   @spacing--other: 30px;
+
+
+  .main > .container {
+    max-width: @container-width;
+    padding-left: 40px;
+    padding-right: 40px;
+
+    @media @mobile {
+      margin-left: 20px;
+      margin-right: 20px;
+      padding: 0;
+      width: ~"calc(100% - 40px)";
+    }
+  }
+
+  .main-wrap > .container {
+    max-width: 100%;
+    width: 100%;
+  }
 
 
   // Applies spacing to widgets to mimic container width
   .empty-zone,
   #page-zones__main:empty,
   #page-zones__main > .widget:not(.row),
-  .row:not(.widget):not(.row--width-no-padding) .row__container {
+  .row:not(.row--width-no-padding) .row__container {
     margin-left: auto;
     margin-right: auto;
-    max-width: @container-width;
-    width: 90%;
+    max-width: calc(@container-width - 80px);
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 100%;
+
+    @media @mobile {
+      margin-left: 20px;
+      margin-right: 20px;
+      padding-left: 0;
+      padding-right: 0;
+      width: ~"calc(100% - 40px)";
+    }
   }
 
   // Move spacing to first widget in the main zone (not sections)
@@ -88,16 +135,11 @@
 
   // Adds spacing to the section when a widget is before it
   #page-zones__main > .widget:not(.row) + .row {
-    margin-bottom: @spacing--other;
+    margin-bottom: 0;
     margin-top: @spacing--other;
 
-    &:not(:last-child) {
+    &:last-child {
          margin-bottom: 0;
     }
   }
-
-  .row {
-    margin-left: 0;
-  }
-
 } // End of #migrated-site
